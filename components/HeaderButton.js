@@ -13,13 +13,13 @@ export default function HeaderButton({
     buttonColor = isActive ? "black" : "white";
 
     return (
-      <View>
+      
           <TouchableOpacity style={{
               backgroundColor: buttonColor,
               paddingVertical: 6,
               paddingHorizontal: 16,
               borderRadius: 30,
-              marginHorizontal: 10
+              marginHorizontal: 10,
           }}
           onPress={() => setActiveTab(text)}>
               <Text style={{
@@ -28,6 +28,6 @@ export default function HeaderButton({
                 fontSize: 15
                 }}>{text}</Text>
           </TouchableOpacity>
-      </View>
+      
     )
 }

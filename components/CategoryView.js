@@ -1,9 +1,9 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 
-export default function CategoryView({value, index}) {
+export default function CategoryView({value}) {
   return (
-    <View key={index} style={{ alignItems: "center", marginRight: 30}}>
+    <View style={{ alignItems: "center", marginRight: 30}}>
         <Image source={value.image}
         style={{
           width: 50,

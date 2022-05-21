@@ -12,7 +12,7 @@ export default function HeaderTabs() {
       paddingVertical: 20,
       alignItems: 'flex-start',
       justifyContent: 'center',
-      
+      backgroundColor: 'white',
       }}>
       <HeaderButton 
         text="Delivery" 

@@ -10,8 +10,6 @@ export default function SearchBar() {
         return (
             <View style={{
                 marginLeft: 10,
-                flex: 0,
-                
             }}>
                 <Ionicons name="location-sharp" size={24}/>
             </View>
@@ -21,21 +19,19 @@ export default function SearchBar() {
     const renderRightButton = () => {
         return (
             <View style={{
-                flex: 1,
                 flexDirection: 'row',
-                paddingHorizontal: 3,
+                paddingHorizontal: 5,
                 paddingVertical: 9,
                 borderRadius: 30,
                 backgroundColor:'white',
-                paddingRight:10,
                 alignItems: "center",
-                justifyContent: "center",
-                maxWidth: 100,
+                justifyContent: 'space-evenly',
+                marginEnd: 10,
+                width: 100
             }}>
                 <AntDesign name="clockcircle" size={12}/>
                 <Text style={{
-                    paddingTop: 2,
-                    paddingHorizontal: 3,
+                    
                 }}>Search</Text>
             </View>
         );
@@ -49,18 +45,20 @@ export default function SearchBar() {
                         borderRadius: 20,
                         fontWeight: '700',
                         marginTop: 8,
-                        flex: 1
+                        
                     },
                     textInputContainer: {
                         backgroundColor: "#dddddd",
                         borderRadius: 50,
                         alignItems: "center",
                         flexDirection: "row",
+                        
                     },
                     container: {
-                        flexDirection: "column",
-                        justifyContent: "flex-start",
-                        flex:0,
+                        paddingHorizontal:10,
+                        backgroundColor: "white",
+                        flex: 0,
+                        paddingVertical: 10
                     }
                 }}
                 placeholder="recherche"
@@ -69,6 +67,7 @@ export default function SearchBar() {
                 
                 
             />
+            
         
     
   )

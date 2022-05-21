@@ -32,18 +32,19 @@ export default function Categories() {
   ];
 
   return (
-    <View style={{
-      marginTop: 5,
-      backgroundcolor: "white",
-      paddingVertical: 10,
-    }}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-        {items.map( (value) => {
-          return (
-            <CategoryView value={value}/>
-          );
-        })}
-      </ScrollView>
-    </View>
+      <View style={{marginTop:10, marginBottom: 5}}>
+        <ScrollView horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{
+            backgroundColor: "white",
+            paddingVertical: 10, 
+            }} >
+          {items.map( (value, index) => {
+            return (
+              <CategoryView key={index} value={value}/>
+            );
+          })}
+        </ScrollView>
+      </View>
   )
 }

@@ -5,7 +5,7 @@ import RestaurantImage from './RestaurantImage';
 
 export default function RestaurantItem(props) {
     const {restaurant} = props;
-    const noImageFoundPicture = require('../assets/images/no_image_found.jpg');
+    const noImageFoundPicture = require('../../assets/images/no_image_found.jpg');
     const thereIsAnImage = (typeof restaurant.image_url === 'string' 
     && restaurant.image_url.length !== 0 )
     const imageSource = thereIsAnImage ? {uri: restaurant.image_url} : noImageFoundPicture;

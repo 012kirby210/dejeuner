@@ -7,6 +7,8 @@ import SearchBar from "./components/SearchBar";
 import { defaultRestaurants } from "./data/defaultRestaurants"
 import { get } from "react-native/Libraries/Utilities/PixelRatio";
 import {YELP_API_KEY} from "@env";
+import BottomBar from "./components/BottomBar";
+import { Divider } from '@rneui/themed';
 
 export default function App() {
 
@@ -28,12 +30,13 @@ export default function App() {
       .then( (json) => { 
         let businesses = json.businesses;
         businesses = (typeof businesses === "undefined") ? [] : json.businesses;
-        businesses = businesses.filter( (item) => {
+        let filteredBusinesses = businesses.filter( (item) => {
           if (item.transactions !== undefined && "object" === typeof item.transactions){
             return item.transactions.includes(activeTab.toLocaleLowerCase());
           }
         });
-        setRestaurants(businesses);
+        filteredBusinesses = filteredBusinesses.length !== 0 ? filteredBusinesses : businesses;
+        setRestaurants(filteredBusinesses);
       })
       .catch(err => console.log(err));
   }
@@ -56,6 +59,8 @@ export default function App() {
         <Categories />
         <Restaurants restaurants={restaurants} /> 
       </ScrollView>
+      <Divider width={1} />
+      <BottomBar />
      </View>
   );
 }

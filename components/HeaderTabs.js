@@ -2,9 +2,9 @@ import { View, Text } from 'react-native'
 import React, {useState} from 'react'
 import HeaderButton from './HeaderButton'
 
-export default function HeaderTabs() {
+export default function HeaderTabs(props) {
 
-  const [activeTab, setActiveTab] = useState("Delivery");
+  const { activeTab, setActiveTab } = props;
 
   return (
     <View style={{

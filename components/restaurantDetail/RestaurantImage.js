@@ -17,9 +17,7 @@ export default function RestaurantImage( props ) {
 
     imageSource = thereIsAnImage ? { uri: imageSource } : require('../../assets/images/no_image_found.jpg');
 
-    console.log(imageSource);
-
     return (
-        <Image style={style} source={imageSource}/>
+        <Image style={style} source={imageSource} resizeMode="cover"/>
     );
 }

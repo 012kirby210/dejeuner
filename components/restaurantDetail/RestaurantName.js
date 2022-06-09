@@ -1,26 +1,26 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function (props) {
+export default function RestaurantName(props) {
 
-    const { description } = props;
     let { viewStyle, textStyle } = props;
+    const { name } = props;
 
     viewStyle = {
-        marginTop: 1,
         marginHorizontal: 15,
+        marginTop: 10,
         ...viewStyle
     };
 
     textStyle = {
-        fontSize: 14,
-        fontWeight: "300",
+        fontSize: 28,
+        fontWeight: "600",
         ...textStyle
     }
 
     return (
         <View style={viewStyle}>
-            <Text style={textStyle}>{description}</Text>
+            <Text style={textStyle}>{name}</Text>
         </View>
     )
 }

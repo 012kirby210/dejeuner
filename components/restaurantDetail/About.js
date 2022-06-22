@@ -4,7 +4,7 @@ import RestaurantImage from './RestaurantImage';
 import RestaurantInformations from './RestaurantInformations';
 import RestaurantName from './RestaurantName';
 
-export default function About() {
+export default function About( {route} ) {
 
     const yelpRestaurantInfo = {
       name: 'The name of the restaurant',
@@ -15,7 +15,8 @@ export default function About() {
       categories: [{title: 'category1'}, {title: 'category2'}],
     };
 
-    const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
+    //const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
+    const { name, image, price, reviews, rating, categories } = route.params;
 
     const formattedCategories = categories.map((category) => category.title).join(' • ');
     
@@ -36,7 +37,7 @@ export default function About() {
 
   return (
     <View style={styles.viewStyle}>
-      <RestaurantImage imageSource={imageUri} />
+      <RestaurantImage imageSource={image} />
       <RestaurantName name={name} />
       <RestaurantInformations description={description} />
     </View>

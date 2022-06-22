@@ -9,7 +9,7 @@ import {YELP_API_KEY} from "@env";
 import BottomBar from "../components/home/BottomBar";
 import { Divider } from '@rneui/themed';
 
-export default function Home() {
+export default function Home( {navigation} ) {
   const [ restaurants, setRestaurants ] = useState(defaultRestaurants);
   const [ city, setCity ] = useState('');
   const [ activeTab, setActiveTab ] = useState("Delivery");
@@ -55,7 +55,7 @@ export default function Home() {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <Restaurants restaurants={restaurants} /> 
+        <Restaurants restaurants={restaurants} navigation={navigation} /> 
       </ScrollView>
       <Divider width={1} />
       <BottomBar />

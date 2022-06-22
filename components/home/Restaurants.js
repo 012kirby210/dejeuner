@@ -4,13 +4,13 @@ import RestaurantItem from './RestaurantItem'
 
 export default function Restaurants(props) {
 
-    const {restaurants} = props;
+    const {restaurants, navigation} = props;
 
   return (
    <View>
        {restaurants.map( (item,index) => {
            return (
-             <RestaurantItem key={index} restaurant={item} />
+             <RestaurantItem key={index} restaurant={item} navigation={navigation} />
            );
        })}
    </View>

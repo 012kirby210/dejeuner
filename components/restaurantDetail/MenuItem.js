@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 
 import MenuItemTitle from './MenuItemTitle';
@@ -24,7 +25,7 @@ export default function MenuItem(props) {
       },
       textColumn: {
         flexDirection:'column',
-        width: '70%',
+        width: '50%',
         justifyContent: 'space-evenly'
 
       },
@@ -51,6 +52,10 @@ export default function MenuItem(props) {
 
   return (
     <View style={styles.menuItemStyleSheet}>
+      <BouncyCheckbox 
+      fillColor="#52fc03"
+      iconStyle={{borderColor: "lightgray",
+      borderRadius: 10}}/>
       <View style={styles.textColumn}>
         <MenuItemTitle title={title}/>
         <MenuItemDescription description={description}/>

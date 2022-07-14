@@ -3,6 +3,7 @@ import React from 'react'
 import { Divider } from '@rneui/themed';
 import About from '../components/restaurantDetail/About';
 import MenuItems from '../components/restaurantDetail/MenuItems';
+import ViewCart from '../components/restaurantDetail/ViewCart';
 
 export default function RestaurantDetail( { route }) {
 
@@ -24,6 +25,7 @@ export default function RestaurantDetail( { route }) {
       <About route={route}/>
       <Divider style={styles.styleDivider}/>
       <MenuItems />
+      <ViewCart />
     </View>
   )
 }

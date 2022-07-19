@@ -1,4 +1,4 @@
-import { View, Text} from 'react-native'
+import { View, Text, StyleSheet} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 import BottomTab from './BottomTab';
@@ -30,13 +30,16 @@ export default function BottomBar() {
         },
     ];
 
+    const styles = StyleSheet.create({
+            viewStyle: {
+            flexDirection: "row",  
+            marginHorizontal: 30,
+            margin: 10,
+            justifyContent: "space-between",
+        }
+    });
     return ( 
-        <View style={{
-          flexDirection: "row",  
-          marginHorizontal: 30,
-          margin: 10,
-          justifyContent: "space-between",
-        }}>
+        <View style={styles.viewStyle}>
         { tabs.map((item,index) => (
             <BottomTab 
                 key={index}

@@ -7,6 +7,8 @@ import ViewCart from '../components/restaurantDetail/ViewCart';
 
 export default function RestaurantDetail( { route }) {
 
+  const restaurantName = ('name' in route.params) ? route.params.name : 'no named restaurant';
+
   const styles = StyleSheet.create({
     styleView:{
       flexDirection: 'column',
@@ -24,7 +26,7 @@ export default function RestaurantDetail( { route }) {
     <View style={styles.styleView}>
       <About route={route}/>
       <Divider style={styles.styleDivider}/>
-      <MenuItems />
+      <MenuItems route={route} restaurantName={restaurantName} />
       <ViewCart />
     </View>
   )

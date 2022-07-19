@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { useState } from 'react';
+//import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { CheckBox } from '@rneui/themed';
 
+import { useDispatch, useSelector } from 'react-redux';
 
 import MenuItemTitle from './MenuItemTitle';
 import MenuItemDescription from './MenuItemDescription';
@@ -9,10 +12,18 @@ import MenuItemPrice from './MenuItemPrice';
 import MenuItemImage from './MenuItemImage';
 
 
-
 export default function MenuItem(props) {
 
-  const { title, description, image, price, onPress, selected, ...other } = props;
+  const { title, description, image, restaurantName, price, selected, ...other } = props;
+
+  const selectedItems = useSelector( (state) => {
+    return state.cartReducer.selectedItems.items;
+  });
+
+  const initialCheckState = selectedItems.reduce( ( acc, item ) => {
+    return acc || item.title === title;}, false );
+
+  const [ checked, setChecked ] = useState( initialCheckState );
 
   const styles = StyleSheet.create(
     {
@@ -32,30 +43,42 @@ export default function MenuItem(props) {
       imageColumn: {
         width: '30%',
         margin: 10
+      },
+      iconStyle: {
+        borderColor: "lightgray",
+        borderRadius: 10
       }
     }
   );
-  /*return (
-    <View>
-      <View style={{
-        flexDirection: 'column'
-      }}>
-        <MenuItemTitle title={title}/>
-        <MenuItemDescription description={description}/>
-        <MenuItemPrice price={price}/>
-      </View>
-      <View>
-        <MenuItemImage imageSource={image}/>
-      </View>
-    </View>
-  );*/
 
+  const dispatch = useDispatch();
+  const selectItem = (actualItem) => {
+      dispatch(
+        {
+          type: 'UPDATE_CART',
+          payload: actualItem
+        }
+      )
+  };
+  const onPress = () => {
+    setChecked(!checked);
+    selectItem({
+      item:{
+        price: price,
+        description: description,
+        image: image,
+        title: title,
+        checkboxValue: !checked
+      },
+      restaurantName: restaurantName,
+    });
+  }
+  
   return (
     <View style={styles.menuItemStyleSheet}>
-      <BouncyCheckbox 
-      fillColor="#52fc03"
-      iconStyle={{borderColor: "lightgray",
-      borderRadius: 10}}/>
+      <CheckBox 
+      onPress={onPress}
+      checked={checked}/>
       <View style={styles.textColumn}>
         <MenuItemTitle title={title}/>
         <MenuItemDescription description={description}/>

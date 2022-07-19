@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { Image, TouchableOpacity } from 'react-native';
 import React from 'react'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -13,17 +13,27 @@ export default function BottomTab(props) {
 
     const color= activeTab===itemText ? "black" : "grey";
 
-    return (
-        <TouchableOpacity 
-            onPress={ () => { setActiveTab(itemText)}}
-
-            style={{
+    const styles = StyleSheet.create({
+        touchableOpacityViewStyle:{
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-        }}>
-            { thereIsAnImage ? (<FontAwesome5 name={itemIcon} size={25} color={color}/>) : null}
-            <Text style={{ color: color}}>{itemText}</Text>
+        },
+        textViewStyle: {
+             color: color,
+        }
+    });
+
+    const onPress = () => { setActiveTab(itemText); };
+
+    const iconImage = thereIsAnImage ? (<FontAwesome5 name={itemIcon} size={25} color={color}/>) : null;
+
+    return (
+        <TouchableOpacity 
+            onPress={onPress}
+            style={ styles.touchableOpacityViewStyle}>
+            { iconImage }
+            <Text style={ styles.textViewStyle }>{itemText}</Text>
         </TouchableOpacity>
     )
 }

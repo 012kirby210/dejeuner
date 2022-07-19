@@ -49,17 +49,20 @@ const items = [
 ];
 
 
-export default function MenuItems() {
-  return (
-    <ScrollView style={{height:'70%'}}>
-      {items.map( (item, index) => (
-          <View key={index}>
-              <MenuItem title={item.title}
-                    description={item.description}
-                    price={item.price}
-                    image={item.image}/>
-          </View>
-      ))}
-    </ScrollView>
-  )
+export default function MenuItems({restaurantName, route}) {
+
+    return (
+        <ScrollView style={{height:'70%'}}>
+        {items.map( (item, index) => (
+            <View key={index}>
+                <MenuItem title={item.title}
+                        description={item.description}
+                        price={item.price}
+                        image={item.image}
+                        restaurantName={restaurantName}
+                        />
+            </View>
+        ))}
+        </ScrollView>
+    )
 }

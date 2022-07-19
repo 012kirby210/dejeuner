@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { TouchableWithoutFeedback } from 'react-native-web';
 
@@ -15,6 +15,24 @@ export default function RestaurantInfo(props){
         ...style, 
     };
 
+    const styles = StyleSheet.create({
+        viewStyle: {
+            height: 30, 
+            width: 30,
+            borderRadius: 50,
+            backgroundColor: "#888888",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+        },
+        textViewStyle: {
+            fontSize: 14,
+            fontWeight: "900",
+            color: "white"
+        }
+
+    });
+
     return (
     <View style={style}>
         <View>
@@ -28,20 +46,8 @@ export default function RestaurantInfo(props){
             {waitingTime}
         </Text>
         </View>
-            <View style={{
-                height: 30, 
-                width: 30,
-                borderRadius: 50,
-                backgroundColor: "#888888",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-            }}>
-            <Text style={{
-                fontSize: 14,
-                fontWeight: "900",
-                color: "white"
-            }}>{rating}</Text>
+            <View style={styles.viewStyle}>
+            <Text style={styles.textViewStyle}>{rating}</Text>
         </View>
     </View>
     );

@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 import CategoryView from './CategoryView';
 
@@ -31,14 +31,22 @@ export default function Categories() {
     }
   ];
 
+  const styles = StyleSheet.create({
+    viewStyle: {
+      marginTop: 10,
+      marginBottom: 5,
+    },
+    scrollViewStyle: {
+      backgroundColor: "white",
+            paddingVertical: 10, 
+    }
+  });
+
   return (
-      <View style={{marginTop:10, marginBottom: 5}}>
+      <View style={styles.viewStyle}>
         <ScrollView horizontal
           showsHorizontalScrollIndicator={false}
-          style={{
-            backgroundColor: "white",
-            paddingVertical: 10, 
-            }} >
+          style={styles.scrollViewStyle} >
           {items.map( (value, index) => {
             return (
               <CategoryView key={index} value={value}/>

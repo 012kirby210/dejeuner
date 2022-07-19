@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -19,6 +19,11 @@ export default function SearchBar(props) {
             ) 
     };
 
+    const onPress = (data,detail) => {
+        const city = data.description.split(',')[0];
+        setCity(city);
+    };
+
     const renderRightButton = () => {
         return (
             <View style={{
@@ -33,9 +38,7 @@ export default function SearchBar(props) {
                 width: 100
             }}>
                 <AntDesign name="clockcircle" size={12}/>
-                <Text style={{
-                    
-                }}>Search</Text>
+                <Text>Search</Text>
             </View>
         );
     };
@@ -68,13 +71,7 @@ export default function SearchBar(props) {
                 renderRightButton={renderRightButton}
                 renderLeftButton={renderLeftButton}
                 query={{key: GOOGLEPLACES_API_KEY}}
-                onPress={(data,detail) => {
-                    const city = data.description.split(',')[0];
-                    setCity(city);
-                }}
+                onPress={onPress}
             />
-            
-        
-    
   )
 }

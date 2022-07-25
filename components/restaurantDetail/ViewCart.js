@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { TouchableOpacity, Modal } from 'react-native'
 import { useSelector } from 'react-redux'
 import OrderItem from './OrderItem';
+import app from '../../firebase';
+import { getFirestore, collection, doc, setDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function ViewCart() {
 
@@ -126,7 +128,7 @@ export default function ViewCart() {
               flexDirection: "row",
               justifyContent: "center",
             }}
-              onPress={hideModal}
+              onPress={addOrderToFirebase}
             >
               <Text style={{
                 color: 'white',
@@ -145,12 +147,22 @@ export default function ViewCart() {
   };
   const onRequestClose = () => { setModalVisible(false)}
 
+
+  const addOrderToFirebase = () => {
+    const db = getFirestore(app);
+    const ordersDocRef = addDoc( collection(db,'orders'), {
+      items: items,
+      restaurantName: restaurantName,
+      createdAt: serverTimestamp(),
+    });
+    hideModal();
+  }
   return (
     <>
     <Modal animationType="slide" 
       visible={modalVisible}
       transparent={true}
-      onRequestClose={onRequestClose}
+      onRequestClose={addOrderToFirebase}
     >
       {checkoutModalContent()}
     </Modal>

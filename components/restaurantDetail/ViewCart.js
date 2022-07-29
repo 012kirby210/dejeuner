@@ -6,7 +6,7 @@ import OrderItem from './OrderItem';
 import app from '../../firebase';
 import { getFirestore, collection, doc, setDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 
-export default function ViewCart() {
+export default function ViewCart({route, navigation}) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const { items, restaurantName } = useSelector( (state) => {
@@ -156,7 +156,12 @@ export default function ViewCart() {
       createdAt: serverTimestamp(),
     });
     hideModal();
+    navigation.navigate('OrderCompleted',{
+      items: items,
+      restaurantName: restaurantName,
+    });
   }
+
   return (
     <>
     <Modal animationType="slide" 

@@ -1,5 +1,9 @@
-# My Universal React Project
+# Uber eats clone 
 
+![HomeScreen](HomeScreen.png)
+
+<p>
+  Original tutorial : <a href="https://www.youtube.com/watch?v=jmvbhuJXFow" rel="no-opener no-referrer" target="_blank">https://www.youtube.com/watch?v=jmvbhuJXFow</a>
 <p>
   <!-- iOS -->
   <a href="https://itunes.apple.com/app/apple-store/id982107779">
@@ -15,27 +19,32 @@
   </a>
 </p>
 
-## 🚀 How to use
+## 🚀 How to start
 
-- Install packages with `yarn` or `npm install`.
-  - If you have native iOS code run `npx pod-install`
-- Run `yarn start` to start the bundler.
-- Open the project in a React runtime to try it:
-  - iOS: [Client iOS](https://itunes.apple.com/app/apple-store/id982107779)
-  - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
-  - Web: Any web browser
+First, get expo, as it will handle the publishing and the dependencies in a "no worries" way.
 
-## Adding Native Code
+<a href="https://docs.expo.dev/get-started/installation/" target="_blank" rel="noopener noreferrer">https://docs.expo.dev/get-started/installation/</a>
+```
+yarn add expo-cli
+```
 
-This project can be run from a web browser or the Expo client app. You may find that you want to add more native code later on. You can do this by ejecting the project and rebuilding it yourself.
+Or globally 
+```
+yarn global add expo-cli
+```
+then :
 
-- Run `yarn eject` to create the native projects.
-- You can still run your project in the web browser or Expo client, you just won't be able to access any new native modules you add.
+- Install packages with `expo install`. Be sure to update the dependencies with `expo update`.
+- Put your : 
+  - yelp api key
+  - google places api key
+  - firebase identifiers
 
-## Publishing
-
-- Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.dev/distribution/app-stores/).
-- Deploy the website using this guide: [Web deployment](https://docs.expo.dev/distribution/publishing-websites/).
+as strings into the `.env.dist` file and rename it `.env`
+- Run `expo start` to start the metro bundler.
+  - if you need to restart the server without the cache use `expo start -c` instead.
+- Read what on the screen to make the app pop
+  - will you need to select an Android device to deploy to, you can presse shift+a.
 
 ## 📝 Notes
 

@@ -14,7 +14,7 @@ import MenuItemImage from './MenuItemImage';
 
 export default function MenuItem(props) {
 
-  const { title, description, image, restaurantName, price, selected, ...other } = props;
+  const { title, description, image, restaurantName, price, selected, gotCheckboxes, ...other } = props;
 
   const selectedItems = useSelector( (state) => {
     return state.cartReducer.selectedItems.items;
@@ -76,9 +76,9 @@ export default function MenuItem(props) {
   
   return (
     <View style={styles.menuItemStyleSheet}>
-      <CheckBox 
+      { gotCheckboxes ? (<CheckBox 
       onPress={onPress}
-      checked={checked}/>
+      checked={checked}/>) : <></>}
       <View style={styles.textColumn}>
         <MenuItemTitle title={title}/>
         <MenuItemDescription description={description}/>

@@ -6,12 +6,15 @@ import OrderItem from './OrderItem';
 import app from '../../firebase';
 import { getFirestore, collection, doc, setDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 
+import LottieView from 'lottie-react-native';
+
 export default function ViewCart({route, navigation}) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const { items, restaurantName } = useSelector( (state) => {
     return state.cartReducer.selectedItems;
   });
+  const [ loading, setLoading ] = useState(false);
 
   const total = items.map( (item => Number(item.price.replace('$',''))))
     .reduce( (prev, current) => prev + current, 0);
@@ -150,16 +153,20 @@ export default function ViewCart({route, navigation}) {
 
   const addOrderToFirebase = () => {
     const db = getFirestore(app);
-    const ordersDocRef = addDoc( collection(db,'orders'), {
+    setLoading(true);
+    addDoc( collection(db,'orders'), {
       items: items,
       restaurantName: restaurantName,
       createdAt: serverTimestamp(),
-    });
+    }).then( () => setTimeout( () => { 
+      setLoading(false);
+      navigation.navigate('OrderCompleted',{
+        items: items,
+        restaurantName: restaurantName,
+      });
+    }, 2500));
     hideModal();
-    navigation.navigate('OrderCompleted',{
-      items: items,
-      restaurantName: restaurantName,
-    });
+
   }
 
   return (
@@ -181,7 +188,13 @@ export default function ViewCart({route, navigation}) {
         </TouchableOpacity>
       </View>
     </View>) : (<></>)}
+    { loading ? 
+    (<View style={{backgroundColor: 'black', position: 'absolute',
+      opacity: 0.6,
+      justifyContent: 'center',alignSelf: 'center', height:'100%', width:"100%"}}>
+      <LottieView style={{height: 200, flex:1}} source={require('../../assets/animations/scanner.json')}
+      autoPlay={true}/>
+      </View>) : (<></>)}
     </>
-    
   )
 }

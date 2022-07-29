@@ -35,6 +35,12 @@ yarn global add expo-cli
 then :
 
 - Install packages with `expo install`. Be sure to update the dependencies with `expo update`.
+- Put your : 
+  - yelp api key
+  - google places api key
+  - firebase identifiers
+
+as strings into the `.env.dist` file and rename it `.env`
 - Run `expo start` to start the metro bundler.
   - if you need to restart the server without the cache use `expo start -c` instead.
 - Read what on the screen to make the app pop
